@@ -55,6 +55,8 @@ int main(int argc, char *argv[]) {
     //loop for game
     for (nodelay(stdscr, TRUE); TRUE; usleep(DELAY)) {
 
+        mvprintw(max_y/2, max_x/2, "%d", max_x/20);
+
 
         // extracts current directory's files/dirs and displays them
         int num_dirs = 0;
@@ -76,14 +78,39 @@ int main(int argc, char *argv[]) {
         }
         pclose(file2);
 
+
+        int num_cols = max_x/20;
+        int x_diff = 15;
+        int num_rows = num_dirs/num_cols;
+        int y_diff = max_y/(num_rows+1);
+        int x_pos = x_diff;
+        int y_pos = y_diff;
+        int dir_idx = 0;
+        
+
+        for (int i = 0; i < num_dirs; i++){
+
+            mvprintw(y_pos, x_pos, "%s", dir_names[i]);
+            if(
+        }
+
+        /*for(int y = 0; y < num_rows; y++){
+            for(int x = 0; x < num_cols; x++){
+                mvprintw(y_pos, x_pos, "%s", dir_names[dir_idx]);
+                dir_idx++;
+                x_pos += x_diff;
+            }
+            y_pos += y_diff;
+        }*/
+
+/*
         int x_diff = max_x/(num_dirs+1);
         int x_pos = x_diff;
         for(int i = 0; i < num_dirs; i++) {
             mvprintw(max_y/4, x_pos, "%s", dir_names[i]);
             x_pos += x_diff;
         }
-
-
+*/
 
         // Get user input to change game state
         int c;
